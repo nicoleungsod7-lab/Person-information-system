@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Person Data Form</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #ede6e5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #000;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    background: rgb(124, 58, 237);
+    color: white;
+}
+
+/* ===== HEADER ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 220px;
+    width: calc(100% - 220px);
+    height: 90px;
+    background: rgb(124, 58, 237);
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    color: white;
+    z-index: 1000;
+}
+
+.header img {
+    width: 100px;
+    height: 85px;
+    border-radius: 50%;
+}
+
+.header h1 {
+    flex: 1;
+    text-align: center;
+    font-size: 32px;
+    margin: 0;
+}
+
+/* ===== CONTENT ===== */
+.content {
+    margin-left: 240px;
+    margin-top: 110px;
+    padding: 30px;
+    padding-bottom: 140px;
+}
+
+.container {
+    background: #faf7f7;
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 900px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+}
+
+button {
+    background: rgb(124, 58, 237);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 150px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button:hover {
+    background: #5b21b6;
+}
+
+table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #f0f0f0;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 220px;
+    width: calc(100% - 220px);
+    height: 100px;
+    background: linear-gradient(90deg, #7c3aed, #9333ea);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.socials {
+    display: flex;
+    gap: 35px;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.socials span {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.socials span:hover {
+    color: #ffd700;
+    transform: scale(1.1);
+}
+
+.footer p {
+    margin: 0;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<div class="sidebar">
+    <h2>MENU</h2>
+    <a href="index.html">Home</a>
+    <a href="Login.html">Log In</a>
+    <a href="person.html">Person</a>
+    <a href="contact.html">Contact</a>
+    <a href="aboutus.html">About Us</a>
+    <a href="helppage.html">Help Page</a>
+    <a href="exit.html">Exit</a>
+</div>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+    <img src="cat.jpg" alt="Logo">
+    <h1>Person Data Form</h1>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content">
+    <div class="container">
+        <h3>Please Enter Information</h3>
+
+        <input type="text" id="fname" placeholder="First Name">
+        <input type="text" id="mname" placeholder="Middle Name">
+        <input type="text" id="lname" placeholder="Last Name">
+        <input type="number" id="age" placeholder="Age">
+        <input type="email" id="email" placeholder="Email">
+
+        <br><br>
+        <button onclick="savePerson()">Save</button>
+        <button onclick="clearInputs()">Clear</button>
+
+        <h3>Saved Persons Data</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tableData"></tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+    <div class="socials">
+        <span><i class="fa-brands fa-facebook"></i> Facebook</span>
+        <span><i class="fa-brands fa-instagram"></i> Instagram</span>
+        <span><i class="fa-brands fa-tiktok"></i> Tiktok</span>
+        <span><i class="fa-solid fa-envelope"></i> Gmail</span>
+    </div>
+    <p>Thank You for Visiting!</p>
+</div>
+
+<script>
+
+// ===== DATA STRUCTURES =====
+let persons = [];
+let emailMap = new Map();
+
+// ===== SAVE FUNCTION =====
+function savePerson() {
+
+    let fname = document.getElementById("fname").value.trim();
+    let mname = document.getElementById("mname").value.trim();
+    let lname = document.getElementById("lname").value.trim();
+    let age = document.getElementById("age").value;
+    let email = document.getElementById("email").value.trim();
+
+    if (fname === "" || lname === "" || age === "" || email === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Missing Fields',
+            text: 'Please fill all required fields!'
+        });
+        return;
+    }
+
+    if (age <= 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid Age',
+            text: 'Age must be greater than 0.'
+        });
+        return;
+    }
+
+    if (emailMap.has(email)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Duplicate Email',
+            text: 'Email already exists!'
+        });
+        return;
+    }
+
+    let person = {
+        fname,
+        mname,
+        lname,
+        age: parseInt(age),
+        email
+    };
+
+    persons.push(person);
+    emailMap.set(email, persons.length - 1);
+
+    displayData();
+    clearInputs();
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Saved!',
+        text: 'Person added successfully!',
+        timer: 1500,
+        showConfirmButton: false
+    });
+}
+
+// ===== DISPLAY FUNCTION =====
+function displayData() {
+    let table = document.getElementById("tableData");
+    table.innerHTML = "";
+
+    for (let i = 0; i < persons.length; i++) {
+        let p = persons[i];
+
+        table.innerHTML += `
+            <tr>
+                <td>${p.fname}</td>
+                <td>${p.mname}</td>
+                <td>${p.lname}</td>
+                <td>${p.age}</td>
+                <td>${p.email}</td>
+                <td>
+                    <button onclick="deletePerson(${i})">Delete</button>
+                </td>
+            </tr>
+        `;
+    }
+}
+
+// ===== DELETE FUNCTION =====
+function deletePerson(index) {
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This person will be deleted!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#7c3aed',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            let emailToDelete = persons[index].email;
+            persons.splice(index, 1);
+            emailMap.delete(emailToDelete);
+            displayData();
+
+            Swal.fire(
+                'Deleted!',
+                'Person has been removed.',
+                'success'
+            );
+        }
+    });
+}
+
+// ===== CLEAR FUNCTION =====
+function clearInputs() {
+    document.getElementById("fname").value = "";
+    document.getElementById("mname").value = "";
+    document.getElementById("lname").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("email").value = "";
+}
+
+</script>
+
+</body>
+</html>

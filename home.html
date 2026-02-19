@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+        background: #7c3aed;
+        color: white;
+        padding: 16px 32px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    header img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    header h1 {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+    }
+
+    .about-box {
+        max-width: 600px;
+        background: #f6f5fa;
+        padding: 32px;
+        border-radius: 18px;
+        box-shadow: 0 18px 35px rgba(124, 58, 237, 0.18);
+        text-align: center;
+    }
+
+    .about-box h2 {
+        margin-bottom: 16px;
+        color: #0a0415;
+        font-size: 26px;
+    }
+
+    .about-box p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+        background: #7c3aed;
+        color: white;
+        padding: 16px;
+        text-align: center;
+    }
+
+    .socials {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .socials span {
+        cursor: pointer;
+    }
+
+    footer p {
+        margin: 0;
+        font-size: 13px;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="cat.jpg" alt="Avatar">
+    <h1>Home</h1>
+</header>
+
+<main>
+    <div class="about-box">
+        <h2>About This Website</h2>
+
+        <p>
+            This website is a simple Person Data Management System.
+            It allows users to input personal information and display it
+            in an organized table for easy viewing and management.
+        </p>
+    </div>
+</main>
+
+<footer>
+    <div class="socials">
+        <span><i class="fa-brands fa-facebook"></i> Facebook</span>
+        <span><i class="fa-brands fa-instagram"></i> Instagram</span>
+        <span><i class="fa-brands fa-tiktok"></i> Tiktok</span>
+        <span><i class="fa-solid fa-envelope"></i> gmail</span>
+    </div>
