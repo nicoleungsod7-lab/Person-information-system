@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 
-<!-- SweetAlert2 CDN -->
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
@@ -16,7 +16,7 @@ body {
     background: #f5f5f5;
 }
 
-/* ===== SIDEBAR ===== */
+
 .sidebar {
     width: 220px;
     height: 100vh;
@@ -45,7 +45,7 @@ body {
     color: white;
 }
 
-/* ===== HEADER ===== */
+
 .header {
     position: fixed;
     top: 0;
@@ -73,7 +73,7 @@ body {
     margin: 0;
 }
 
-/* ===== CONTENT ===== */
+
 .content {
     margin-left: 240px;
     margin-top: 110px;
@@ -125,7 +125,7 @@ th {
     background: #f0f0f0;
 }
 
-/* ===== FOOTER ===== */
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -166,7 +166,7 @@ th {
 
 <body>
 
-<!-- ===== SIDEBAR ===== -->
+
 <div class="sidebar">
     <h2>MENU</h2>
     <a href="index.html">Home</a>
@@ -178,13 +178,13 @@ th {
     <a href="exit.html">Exit</a>
 </div>
 
-<!-- ===== HEADER ===== -->
+
 <div class="header">
     <img src="cat.jpg" alt="Logo">
     <h1>Person Data Form</h1>
 </div>
 
-<!-- ===== CONTENT ===== -->
+
 <div class="content">
     <div class="container">
         <h3>Please Enter Information</h3>
@@ -216,7 +216,7 @@ th {
     </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
+
 <div class="footer">
     <div class="socials">
         <span><i class="fa-brands fa-facebook"></i> Facebook</span>
@@ -229,11 +229,11 @@ th {
 
 <script>
 
-// ===== DATA STRUCTURES =====
+
 let persons = [];
 let emailMap = new Map();
 
-// ===== SAVE FUNCTION =====
+
 function savePerson() {
 
     let fname = document.getElementById("fname").value.trim();
@@ -292,7 +292,7 @@ function savePerson() {
     });
 }
 
-// ===== DISPLAY FUNCTION =====
+
 function displayData() {
     let table = document.getElementById("tableData");
     table.innerHTML = "";
@@ -315,7 +315,7 @@ function displayData() {
     }
 }
 
-// ===== DELETE FUNCTION =====
+
 function deletePerson(index) {
 
     Swal.fire({
@@ -344,7 +344,7 @@ function deletePerson(index) {
     });
 }
 
-// ===== CLEAR FUNCTION =====
+
 function clearInputs() {
     document.getElementById("fname").value = "";
     document.getElementById("mname").value = "";
@@ -357,3 +357,4 @@ function clearInputs() {
 
 </body>
 </html>
+
